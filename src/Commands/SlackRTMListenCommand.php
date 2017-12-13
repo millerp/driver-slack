@@ -2,6 +2,7 @@
 
 namespace BotMan\Drivers\Slack\Commands;
 
+use BotMan\BotMan\Cache\LaravelCache;
 use React\EventLoop\Factory;
 use Illuminate\Console\Command;
 use BotMan\BotMan\BotManFactory;
@@ -39,7 +40,7 @@ class SlackRTMListenCommand extends Command
         $app->singleton('botman', function ($app) use ($loop) {
             DriverManager::loadDriver(SlackRTMDriver::class);
 
-            return BotManFactory::createForRTM(config('botman', []), $loop, new ArrayCache());
+            return BotManFactory::createForRTM(config('botman', []), $loop, new LaravelCache());
         });
 
         if (file_exists(base_path('routes/botman.php'))) {

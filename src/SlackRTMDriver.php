@@ -370,7 +370,7 @@ class SlackRTMDriver implements DriverInterface
      */
     public function serializesCallbacks()
     {
-        return false;
+        return true;
     }
 
     /**
